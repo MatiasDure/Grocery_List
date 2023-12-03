@@ -22,7 +22,6 @@ function AddItem({newItem, setNewItem, items, setItems}) {
         setItems(newListItems);
 
         setNewItem("");
-        localStorage.setItem("shoppinglist", JSON.stringify(newListItems));
     } 
 
     return (
