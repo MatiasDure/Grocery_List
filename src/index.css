@@ -7,23 +7,93 @@
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+  font-family:Arial, Helvetica, sans-serif;
 }
 
 header, footer {
   background-color: royalblue;
   color: #fff;
+  text-align: center;
+  padding: 20px;
 }
 
 main {
   flex: 1;
+  padding: 20px;
+}
+
+ul {
+  flex: 1;
   display: flex;
-  /* align-items: center; */
-  /* justify-content: center; */
+  flex-direction: column;
+  gap: 10px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  background-color: aliceblue;
+  box-shadow: 0px 3px 6px rgba(150,150,150,.3);
+  padding: 10px;
+  gap: 10px;
+  border-radius: 10px;
+}
+
+.App > form {
+  display: flex;
+
+  margin: 20px 20px 10px 20px;
+}
+
+.App > form > input[type=text] {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  background-color: aliceblue;
+  outline: none;
+}
+
+.addForm {
+  position: relative;
+}
+
+.addForm > button {
+  position: absolute;
+  right: 0;
+  height: 100%;
+  width: 48px;
+  border: none;
+  background-color: bisque;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.addForm svg {
+  font-size: 1.5rem;
+  position: absolute;
+  right: 50%;
+  top: 50%;
+  transform: translate(50%, -50%);
+}
+
+/* Used only for accessibility */
+.App > form > label {
+  position: absolute;
+  left: -9999px;
+}
+
+.item label {
+  flex: 1;
+  font-size: 2rem;
+}
+
+.item input[type=checkbox], .item svg {
+  width: 48px;
+  height: 48px;
 }
 
 .item svg {
-  width: 48px;
-  height: 48px;
   font-size: 1rem;
   color: steelblue;
   cursor: pointer; 
