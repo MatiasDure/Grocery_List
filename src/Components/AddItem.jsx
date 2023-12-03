@@ -1,12 +1,13 @@
 import { FaPlus } from "react-icons/fa";
+import apiRequest from '../apiRequests';
 
-function AddItem({newItem, setNewItem, items, setItems}) {
+function AddItem({newItem, setNewItem, items, setItems, API_URL, setFetchError}) {
 
     const handleChange = (e) => {
         setNewItem(e.target.value);
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         if(newItem.trim().length === 0) return;
@@ -20,6 +21,18 @@ function AddItem({newItem, setNewItem, items, setItems}) {
         const newListItems = [...items, itemToAdd];
 
         setItems(newListItems);
+
+        const postOptions = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(itemToAdd)
+        }
+
+        const result = await apiRequest(API_URL, postOptions);
+
+        if(result) setFetchError(result);
 
         setNewItem("");
     } 
