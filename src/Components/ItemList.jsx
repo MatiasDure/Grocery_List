@@ -1,41 +1,20 @@
-import apiRequest from "../apiRequests";
 import LineItem from "./LineItem";
 
-function ItemList({items, setItems, API_URL, setFetchError}) {
+function ItemList({items, setItems}) {
     
-    const handleCheck = async (id) => {
+    const setAndSaveItems = (items) => {
+        setItems(items);
+        localStorage.setItem("shoppinglist", JSON.stringify(items));
+    }
+
+    const handleCheck = (id) => {
         const listItems = items.map( (item) => item.id === id ? {...item, checked: !item.checked } : item)
-
-        setItems(listItems);
-
-        const updatedItem = listItems.find( (item) => item.id === id );
-
-        const updateOptions = {
-            method: "PATCH",
-            headers: {
-                "Content-Type" : "application/json"
-            },
-            body: JSON.stringify({ checked: updatedItem.checked})
-        };
-
-        const reqUrl = `${API_URL}/${id}`;
-
-        const result = await apiRequest(reqUrl, updateOptions);
-
-        if(result) setFetchError(result);
+        setAndSaveItems(listItems);
     }
     
-    const handleDelete = async (id) => {
+    const handleDelete = (id) => {
         const listItems = items.filter( (item) => item.id !== id );
-        
-        setItems(listItems);
-
-        const deleteOptions = { method: "DELETE" };
-        const reqUrl = `${API_URL}/${id}`;
-
-        const result = await apiRequest(reqUrl, deleteOptions);
-
-        if(result) setFetchError(result);
+        setAndSaveItems(listItems);
     }
 
     return (
